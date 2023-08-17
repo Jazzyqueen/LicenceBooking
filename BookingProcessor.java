@@ -33,10 +33,6 @@ public class BookingProcessor {
 
             // Process the booking here
             System.out.println("Processing booking for user with ID: " + idNumber);
-
-            // You can perform additional processing or actions here
-            
-            // After processing, remove the user from the list
             iterator.remove();
         }
     }
