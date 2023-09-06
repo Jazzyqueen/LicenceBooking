@@ -17,6 +17,7 @@ public class LicenseBookingApp {
     private List<User> users = new ArrayList<>();
     private List<User> bookings = new ArrayList<>();       
     private Scanner scanner = new Scanner(System.in);
+    
 
        public void validateIdNumber(String idNumber)  {
     // Check if the ID number has the correct length
@@ -57,13 +58,27 @@ public class LicenseBookingApp {
 
         try {
             validateIdNumber(idNumber);
-            User user = new User(firstName, lastName, birthday, idNumber, gender);
+            User user = new User(firstName , lastName, birthday, idNumber, gender);
             users.add(user);
             System.out.println("User registered successfully!");
         } catch (Exception e) {
             System.out.println("Invalid ID number. User registration failed.");
         }
     }
+    
+      public void viewRegisteredUser() {
+        System.out.println("registered users:");
+                    for (User input : users) {
+                        System.out.println(input);
+    }
+                    if (users.isEmpty()) {
+            System.out.println("No data to process.");
+            return;
+        }
+}
+    
+    
+    
     public void makeBooking() {
         if (users.isEmpty()) {
             System.out.println("No users registered. Cannot make a booking.");
@@ -88,12 +103,17 @@ public class LicenseBookingApp {
 
     public void processBookings() {
         
+        System.out.println("Processed Booking:");
+                    for (User input : bookings) {
+                        System.out.println(input);
+                    }
+
         if (bookings.isEmpty()) {
             System.out.println("No bookings to process.");
             return;
         }
 
-        User processedUser = bookings.get(other);
+        User processedUser = users.get(other);
         System.out.println("Processed booking for: " + processedUser.getFirstName() + " " + processedUser.getLastName());
     }
 
@@ -102,30 +122,36 @@ public class LicenseBookingApp {
             System.out.println("\nLicense Booking Console Application");
             System.out.println("1. Register User");
             System.out.println("2. Make Booking");
-            System.out.println("3. Process Bookings");
-            System.out.println("4. Exit");
+            System.out.println("3. View registered User");
+            System.out.println("4. Process Bookings");
+            System.out.println("0. Exit");
             System.out.print("Select an option: ");
 
-            String choice = scanner.nextLine();
+            int choice = scanner.nextInt();
+             scanner.nextLine();
 
             switch (choice) {
-                case "1":
+                case 1:
                     registerUser();
                     break;
-                case "2":
+                case 2:
                     makeBooking();
                     break;
-                case "3":
+                case 3:
+                    viewRegisteredUser();
+                    break;
+                case 4:
                     processBookings();
                     break;
-                case "4":
-                    return;
                 default:
                     System.out.println("Invalid choice. Please select a valid option.");
             }
         }
     }
-}
 
+  
+
+  
+}
     
 
